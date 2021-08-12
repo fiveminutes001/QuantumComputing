@@ -22,3 +22,75 @@ for (let i = 0; i < 4; i++) {
 }
 
 document.body.appendChild(fragment); // reflow and repaint here -- once!
+
+//Object Oriented Js course stuff
+let cat = {
+    age: 2,
+    name: 'Bailey',
+    meow: function () {
+      console.log('Meow!');
+    },
+    greet: function (person) {
+      console.log('Hello, ' + person + '!');
+    }
+  };
+  
+  cat.color = 'gray';
+  
+  cat.sayName = function () {
+    console.log(cat.name);
+  };
+  
+  console.log(cat);
+  
+  delete cat.greet;
+  
+  cat.greet();
+  // TypeError: cat.greet is not a function
+  
+  cat.greet;
+  
+  console.log(cat);
+
+  let cat = {
+    age: 2,
+    name: "Bailey",
+    meow: function () {
+      console.log('Meow!');
+    },
+    greet: function (person) {
+      console.log('Hello, ' + person + '!');
+    }
+  };
+  
+  cat.age;
+  
+  cat.meow;
+  
+  cat.meow();
+  
+  cat.greet('Andrew');
+  // 'Hello, Andrew!'
+
+  const dog = {
+    name: 'Jodi',
+    age: 7,
+    ageOneYear: function () {
+      this.age += 1;
+      console.log('Current age: ' + this.age);
+    },
+    woof: function () {
+      console.log(this.name + " says 'woof!'");
+    },
+    whatIsThis: function () {
+      console.log(this);
+    }
+  };
+  
+  dog.whatIsThis();
+  
+  dog.woof();
+  
+  dog.ageOneYear();
+  
+  dog.age;
