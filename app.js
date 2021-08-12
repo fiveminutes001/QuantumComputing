@@ -52,17 +52,6 @@ let cat = {
   
   console.log(cat);
 
-  let cat = {
-    age: 2,
-    name: "Bailey",
-    meow: function () {
-      console.log('Meow!');
-    },
-    greet: function (person) {
-      console.log('Hello, ' + person + '!');
-    }
-  };
-  
   cat.age;
   
   cat.meow;
@@ -94,3 +83,20 @@ let cat = {
   dog.ageOneYear();
   
   dog.age;
+
+  const chameleon = {
+    eyes: 2,
+    lookAround: function () {
+      // debugger
+      console.log(`I see you with my ${this.eyes} eyes!`);
+    }
+  };
+  
+  chameleon.lookAround();
+  
+  function whoThis () {
+    // debugger
+    this.trickyish = true;
+  }
+  
+  whoThis();
