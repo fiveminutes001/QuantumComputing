@@ -192,3 +192,232 @@ const results = musicData.filter(function (music) {
 });
 
 console.log(results);
+
+//Closure (= scope at a given time = the function and its  lexical environment at a given time)
+  
+const number = 3;
+
+function myFunction () {
+  const otherNumber = 1;
+
+  function logger() {
+    console.log(otherNumber);
+  }
+
+  return logger;
+}
+
+const result = myFunction();
+
+result();
+// 1
+
+function myCounter() {
+    let count = 0;
+  
+    return function () {
+      count += 1;
+      return count;
+    };
+  }
+  
+  let counter = myCounter();
+  
+  counter();
+  // 1
+  
+  counter();
+  // 2
+  
+  counter.count;
+  // undefined
+  
+  count;
+  // undefined
+
+  function expandArray (){
+    let myArray = [1,1,1];
+    
+    return function (){
+        myArray.forEach(function(el,ind,ar){ 
+        ar[ind] += 1;
+        })
+       return myArray;
+    }
+}
+
+let a=expandArray();
+
+a();
+
+function expandArray2 (){
+    let myArray2 = [1,1,1];
+    
+    return function (){
+        
+        myArray2.push(1);
+    
+       return myArray2;
+    }
+}
+
+(function (name){
+    alert(`Hi, ${name}`);
+  }
+)('Andrew');
+
+// alerts 'Hi, Andrew'
+
+(function (x, y){
+    console.log(x * y);
+  }
+)(2, 3);
+
+// 6
+
+const myFunction = (
+    function () {
+      const hi = 'Hi!';
+      return function () {
+        console.log(hi);
+      }
+    }
+  )();
+
+  (function sayHi(){
+    alert('Hi there!');
+  }
+ )();
+ 
+ // alerts 'Hi there!'
+
+ (function sayHi(){
+    alert('Hi there!');
+ }());
+ 
+ // alerts 'Hi there!'
+
+ function SoftwareDeveloper() {
+    this.favoriteLanguage = 'JavaScript';
+  }
+  
+  let developer = new SoftwareDeveloper();
+  
+  let otherDeveloper = {favoriteLanguage: 'JavaScript'};
+
+  function Hero(name, role) {
+    this.name = name;
+    this.role = role;
+  
+    this.introduce = function () {
+      console.log(`My name is ${this.name} and I am a ${this.role}.`);
+    };
+  }
+  
+  let taylor = new Hero('Taylor', 'mother');
+  
+  let riley = new Hero('Riley', 'coach');
+  
+  taylor.name;
+  riley.role;
+  
+  taylor.introduce();
+  riley.introduce();
+
+  function Developer(name) {
+    this.name = name;
+  }
+  
+  let dev = new Developer('Veronika');
+  
+  typeof dev
+  // "object"
+  
+  dev instanceof Developer;
+  // true
+
+  const cat = {
+    name: 'Bailey'
+  };
+  
+  function sayHello(message) {
+    console.log(`${message}, ${this.name}`);
+  }
+  
+  sayHello.call(cat, 'Nice to see you');
+  
+  sayHello.apply(cat, ['Hello']);
+
+  function invokeTwice(cb) {
+    cb();
+    cb();
+ }
+ 
+ const dog = {
+   age: 5,
+   growOneYear: function () {
+     this.age += 1;
+   }
+ };
+ 
+ dog.growOneYear();
+ // (this works as expected)
+ 
+ dog.age;
+ // 6
+ 
+ invokeTwice(dog.growOneYear);
+ // undefined
+ 
+ dog.age;
+ // 6
+
+ function invokeTwice(cb) {
+    cb();
+    cb();
+ }
+ 
+ const dog = {
+   age: 5,
+   growOneYear: function () {
+     this.age += 1;
+   }
+ };
+ 
+ const myGrow = dog.growOneYear.bind(dog);
+ 
+ dog.age;
+ // 7
+
+ // function Dog(age, weight, name) {
+//   this.age = age;
+//   this.weight = weight;
+//   this.name = name;
+//   this.bark = function () {
+//     console.log(`${this.name} says woof!`);
+//   };
+// }
+
+function Dog(age, weight, name) {
+    this.age = age;
+    this.weight = weight;
+    this.name = name;
+  }
+  
+  Dog.prototype.bark = function () {
+      console.log(`${this.name} says woof!`);
+  };
+  
+  dog1 = new Dog(2, 60, 'Java');
+  
+  dog2 = new Dog(4, 55, 'Jodi');
+  
+  dog1.bark();
+  
+  dog2.bark();
+
+  const myArray = [1, 2, 3];
+
+myArray.join('');
+
+console.dir(myArray);
