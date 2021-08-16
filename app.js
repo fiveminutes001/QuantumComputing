@@ -421,3 +421,187 @@ function Dog(age, weight, name) {
 myArray.join('');
 
 console.dir(myArray);
+
+function Animal (name) {
+    this.name = name;
+  }
+  
+  Animal.prototype.walk = function () {
+    console.log(`${this.name} walks!`);
+  };
+  
+  function Cat (name) {
+    Animal.call(this, name);
+    this.lives = 9;
+  }
+  
+  Cat.prototype = Object.create(Animal.prototype);
+  
+  Cat.prototype.constructor = Cat;
+  
+  Cat.prototype.meow = function () {
+    console.log('Meow!');
+  };
+  
+  const bambi = new Cat('Bambi');
+  
+  bambi.meow();
+  bambi.walk();
+  
+  bambi.name;
+
+  const duck = {
+    hasBill: true,
+    feet: 'orange'
+  };
+  const beaver = {
+    hasTail: true
+  };
+  const otter = {
+    hasFur: true,
+    feet: 'webbed'
+  };
+  
+  const platypus = Object.assign({}, duck, beaver, otter);
+  
+  console.log(platypus);
+
+  function Radio(mode) {
+    let on = false;
+  
+    return {
+      mode: mode,
+      turnOn: function () {
+        on = true;
+      },
+      isOn: function () {
+        return on;
+      }
+    };
+  }
+  
+  let fmRadio = Radio('fm');
+  
+  fmRadio.on;
+  //undefined
+  
+  fmRadio.isOn();
+  // false
+  
+  fmRadio.turnOn();
+  
+  fmRadio.isOn();
+
+  function IceCreamFactory(obj) {
+    let isCold = true;
+  
+    return Object.assign({}, obj, {
+      melt: function () {
+        isCold = false;
+      },
+      isCold: function () {
+        return isCold;
+      }
+    });
+  }
+  
+  let iceCream = IceCreamFactory({});
+  
+  function ConeFactory(obj) {
+    let isDry = true;
+  
+    return Object.assign({}, obj, {
+      soggy: function () {
+        isDry = false;
+      },
+      isDry: function () {
+        return isDry;
+      }
+    });
+  }
+  
+  let iceCreamCone = IceCreamFactory(ConeFactory({}));
+  
+  console.log(iceCreamCone);
+
+  //
+
+  function PrototypicalGreeting(greeting = "Hello", name = "World") {
+    this.greeting = greeting
+    this.name = name
+  }
+  
+  PrototypicalGreeting.prototype.greet = function() {
+    return `${this.greeting}, ${this.name}!`
+  }
+  
+  const greetProto = new PrototypicalGreeting("Hey", "folks")
+  console.log(greetProto.greet())
+
+//is the same as
+
+  class ClassicalGreeting {
+    constructor(greeting = "Hello", name = "World") {
+      this.greeting = greeting
+      this.name = name
+    }
+  
+    greet() {
+      return `${this.greeting}, ${this.name}!`
+    }
+  }
+  
+  const classyGreeting = new ClassicalGreeting("Hey", "folks")
+  
+  console.log(classyGreeting.greet());
+
+  //
+  let myModule = (function (){
+    function privateMethod (message) {
+      console.log(message);
+    }
+  
+    function publicMethod (message) {
+      privateMethod(message);
+    }
+  
+    return {
+      publicMethod: publicMethod
+    };
+  })();
+  
+  let myModule2 = (function () {
+    function privateMethod (message) {
+      console.log(message);
+    }
+  
+    return {
+      publicMethod: function (message) {
+        privateMethod(message);
+      }
+    };
+  })();
+  
+  let person = (function () {
+    let privateAge = 0;
+    let privateName = 'Andrew';
+  
+    function privateAgeOneYear() {
+      privateAge += 1;
+      console.log(`One year has passed! Current age is ${privateAge}`);
+    }
+  
+    function displayName() {
+      console.log(`Name: ${privateName}`);
+    }
+  
+    function ageOneYear() {
+      privateAgeOneYear();
+    }
+  
+    return {
+      name: displayName,
+      age: ageOneYear
+    };
+  })();
+  
