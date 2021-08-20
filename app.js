@@ -1,7 +1,10 @@
+//Js and the DOM course
+//addEventListener
 document.addEventListener('click', function () {
     console.log("you've clicked");
 })
 
+//querySelectorAll, forEach method, preventDefault method
 const links = document.querySelectorAll('a');
 const thirdLink = links[2];
 
@@ -12,6 +15,7 @@ links.forEach(element => {
 });
 });
 
+//createDocumentFragment
 const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
 
 for (let i = 0; i < 4; i++) {
@@ -23,17 +27,18 @@ for (let i = 0; i < 4; i++) {
 
 document.body.appendChild(fragment); // reflow and repaint here -- once!
 
-//Object Oriented Js course stuff
+//Object Oriented Js course
+//cat object
 let cat = {
-    age: 2,
-    name: 'Bailey',
-    meow: function () {
-      console.log('Meow!');
-    },
-    greet: function (person) {
-      console.log('Hello, ' + person + '!');
-    }
-  };
+        age: 2,
+        name: 'Bailey',
+        meow: function () {
+            console.log('Meow!');
+        },
+        greet: function (person) {
+            console.log('Hello, ' + person + '!');
+        }
+    };
   
   cat.color = 'gray';
   
@@ -42,25 +47,14 @@ let cat = {
   };
   
   console.log(cat);
-  
-  delete cat.greet;
-  
-  cat.greet();
-  // TypeError: cat.greet is not a function
-  
-  cat.greet;
-  
-  console.log(cat);
-
   cat.age;
-  
   cat.meow;
-  
   cat.meow();
-  
-  cat.greet('Andrew');
-  // 'Hello, Andrew!'
+  cat.greet('Andrew');// 'Hello, Andrew!'
+  delete cat.greet;
+  cat.greet();// TypeError: cat.greet is not a function
 
+  //dog object
   const dog = {
     name: 'Jodi',
     age: 7,
@@ -84,6 +78,7 @@ let cat = {
   
   dog.age;
 
+  //chameleon object
   const chameleon = {
     eyes: 2,
     lookAround: function () {
@@ -99,9 +94,9 @@ let cat = {
     this.trickyish = true;
   }
   
-  whoThis();
+  whoThis();// refers to the window object
 
-    
+//returning a function    
 const returnsAFunction = function () {
     return function () {
       console.log('Hello from inside a function');
@@ -109,9 +104,7 @@ const returnsAFunction = function () {
   };
   
   const newFunction = returnsAFunction();
-  
   newFunction();
-  
   returnsAFunction()();
 
     
@@ -128,6 +121,7 @@ function callAndAdd(n, callbackFunction) {
   console.log(result);
   // 5
 
+//array.map
   /* Using map()
  *
  * Using the musicData array and map():
@@ -161,6 +155,7 @@ const albumSalesStrings = musicData.map(function (music){
 
 console.log(albumSalesStrings);
 
+//array.filter
 /* Using filter()
  *
  * Using the musicData array and filter():
@@ -223,18 +218,12 @@ function myCounter() {
   
   let counter = myCounter();
   
-  counter();
-  // 1
-  
-  counter();
-  // 2
-  
-  counter.count;
-  // undefined
-  
-  count;
-  // undefined
+  counter();// 1
+  counter();// 2
+  counter.count;// undefined
+  count;// undefined
 
+  //take an array and add 1 to each element it for each call
   function expandArray (){
     let myArray = [1,1,1];
     
@@ -247,9 +236,9 @@ function myCounter() {
 }
 
 let a=expandArray();
-
 a();
 
+//take an array and use a forEach to add 1 element to it for each call
 function expandArray2 (){
     let myArray2 = [1,1,1];
     
@@ -261,19 +250,16 @@ function expandArray2 (){
     }
 }
 
+//define and immediately launch a function
 (function (name){
     alert(`Hi, ${name}`);
   }
-)('Andrew');
-
-// alerts 'Hi, Andrew'
+)('Andrew');// alerts 'Hi, Andrew'
 
 (function (x, y){
     console.log(x * y);
   }
-)(2, 3);
-
-// 6
+)(2, 3);// 6
 
 const myFunction = (
     function () {
@@ -282,27 +268,24 @@ const myFunction = (
         console.log(hi);
       }
     }
-  )();
+  )();//myFunction() alerrts 'Hi!'
 
   (function sayHi(){
     alert('Hi there!');
   }
- )();
- 
- // alerts 'Hi there!'
+ )();// alerts 'Hi there!'
 
  (function sayHi(){
     alert('Hi there!');
- }());
- 
- // alerts 'Hi there!'
+ }());// alerts 'Hi there!'
 
+ //constructor functions
  function SoftwareDeveloper() {
     this.favoriteLanguage = 'JavaScript';
   }
   
-  let developer = new SoftwareDeveloper();
-  
+  let developer = new SoftwareDeveloper();//new word creates a new object according to the constructor function's blueprint.
+  //same as
   let otherDeveloper = {favoriteLanguage: 'JavaScript'};
 
   function Hero(name, role) {
@@ -315,7 +298,6 @@ const myFunction = (
   }
   
   let taylor = new Hero('Taylor', 'mother');
-  
   let riley = new Hero('Riley', 'coach');
   
   taylor.name;
@@ -330,11 +312,11 @@ const myFunction = (
   
   let dev = new Developer('Veronika');
   
-  typeof dev
-  // "object"
+  //typeof
+  typeof dev// "object"
   
-  dev instanceof Developer;
-  // true
+  //instanceof
+  dev instanceof Developer;// true
 
   const cat = {
     name: 'Bailey'
@@ -343,9 +325,9 @@ const myFunction = (
   function sayHello(message) {
     console.log(`${message}, ${this.name}`);
   }
-  
+  // call is a method that is called on a function to set its "this" property
   sayHello.call(cat, 'Nice to see you');
-  
+  // apply is same as call, but passes several arguments in array
   sayHello.apply(cat, ['Hello']);
 
   function invokeTwice(cb) {
@@ -360,17 +342,11 @@ const myFunction = (
    }
  };
  
- dog.growOneYear();
- // (this works as expected)
+ dog.growOneYear();// (this works as expected)
+ dog.age; // 6
  
- dog.age;
- // 6
- 
- invokeTwice(dog.growOneYear);
- // undefined
- 
- dog.age;
- // 6
+ invokeTwice(dog.growOneYear);// undefined, because "this" is not set 
+ dog.age;// 6
 
  function invokeTwice(cb) {
     cb();
@@ -384,20 +360,20 @@ const myFunction = (
    }
  };
  
- const myGrow = dog.growOneYear.bind(dog);
- 
- dog.age;
- // 7
+ const myGrow = dog.growOneYear.bind(dog);//bind is used to pass the desired "this" to the function dog.growOneYear
+ dog.age;// 7
 
- // function Dog(age, weight, name) {
-//   this.age = age;
-//   this.weight = weight;
-//   this.name = name;
-//   this.bark = function () {
-//     console.log(`${this.name} says woof!`);
-//   };
-// }
+//this is same as
+ function Dog(age, weight, name) {
+   this.age = age;
+   this.weight = weight;
+   this.name = name;
+   this.bark = function () {
+     console.log(`${this.name} says woof!`);
+   };
+ }
 
+//this
 function Dog(age, weight, name) {
     this.age = age;
     this.weight = weight;
@@ -409,19 +385,16 @@ function Dog(age, weight, name) {
   };
   
   dog1 = new Dog(2, 60, 'Java');
-  
   dog2 = new Dog(4, 55, 'Jodi');
-  
   dog1.bark();
-  
   dog2.bark();
 
-  const myArray = [1, 2, 3];
-
+const myArray = [1, 2, 3];
 myArray.join('');
-
 console.dir(myArray);
 
+//Subclasses
+//animal constructor function
 function Animal (name) {
     this.name = name;
   }
@@ -436,7 +409,6 @@ function Animal (name) {
   }
   
   Cat.prototype = Object.create(Animal.prototype);
-  
   Cat.prototype.constructor = Cat;
   
   Cat.prototype.meow = function () {
@@ -447,9 +419,79 @@ function Animal (name) {
   
   bambi.meow();
   bambi.walk();
-  
   bambi.name;
 
+//another subclasses example
+//Since JavaScript doesn't exactly have sub-class objects, prototype is a useful workaround to make a “base class” object
+//of certain functions that act as objects. For example:
+
+var Person = function(name) {
+  this.name = name;
+  this.canTalk = true;
+};
+
+Person.prototype.greet = function() {
+  if (this.canTalk) {
+    console.log('Hi, I am ' + this.name);
+  }
+};
+
+var Employee = function(name, title) {
+  Person.call(this, name);
+  this.title = title;
+};
+
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee; //If you don't set Object.prototype.constructor to Employee,
+                                           //it will take prototype.constructor of Person (parent).
+                                           //To avoid that, we set the prototype.constructor to Employee (child).
+
+Employee.prototype.greet = function() {
+  if (this.canTalk) {
+    console.log('Hi, I am ' + this.name + ', the ' + this.title);
+  }
+};
+
+var Customer = function(name) {
+  Person.call(this, name);
+};
+
+Customer.prototype = Object.create(Person.prototype);
+Customer.prototype.constructor = Customer; //If you don't set Object.prototype.constructor to Customer,
+                                           //it will take prototype.constructor of Person (parent).
+                                           //To avoid that, we set the prototype.constructor to Customer (child).
+
+var Mime = function(name) {
+  Person.call(this, name);
+  this.canTalk = false;
+};
+
+Mime.prototype = Object.create(Person.prototype);
+Mime.prototype.constructor = Mime; //If you don't set Object.prototype.constructor to Mime,
+                                   //it will take prototype.constructor of Person (parent).
+                                   //To avoid that, we set the prototype.constructor to Mime (child).
+
+var bob = new Employee('Bob', 'Builder');
+var joe = new Customer('Joe');
+var rg = new Employee('Red Green', 'Handyman');
+var mike = new Customer('Mike');
+var mime = new Mime('Mime');
+
+bob.greet();
+// Hi, I am Bob, the Builder
+
+joe.greet();
+// Hi, I am Joe
+
+rg.greet();
+// Hi, I am Red Green, the Handyman
+
+mike.greet();
+// Hi, I am Mike
+
+mime.greet();
+
+//object.assign  
   const duck = {
     hasBill: true,
     feet: 'orange'
@@ -605,3 +647,25 @@ function Animal (name) {
     };
   })();
   
+
+//https://stackoverflow.com/questions/8453887/why-is-it-necessary-to-set-the-prototype-constructor
+// define the Person Class  
+function Person(name) {
+    this.name = name;
+}  
+
+Person.prototype.copy = function() {  
+    // return new Person(this.name); // just as bad
+    return new this.constructor(this.name);
+};  
+
+// define the Student class  
+function Student(name) {  
+    Person.call(this, name);
+}  
+
+// inherit Person  
+Student.prototype = Object.create(Person.prototype);
+
+// correct the constructor pointer because it points to Person  
+Student.prototype.constructor = Student;
